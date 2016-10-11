@@ -1,0 +1,499 @@
+{% load i18n %}
+{% load staticfiles %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+<!DOCTYPE html>
+<html lang="{{ html_lang }}">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{% block title %}Goccina{% endblock %}</title>
+          <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i" rel="stylesheet"> 
+         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+         <!-- all css here -->
+        <!-- bootstrap v3.3.6 css -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <!-- animate css -->
+        <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+        <!-- jquery-ui.min css -->
+        <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}">
+        <!-- meanmenu css -->
+        <link rel="stylesheet" href="{% static 'css/meanmenu.min.css' %}">
+        <!-- owl.carousel css -->
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+        <!-- font-awesome css -->
+        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+        <!-- nivo-slider css -->
+        <link rel="stylesheet" href="{% static 'css/nivo-slider.css' %}">
+        <!-- style css -->
+        <link rel="stylesheet" href="{% static 'fixed.css' %}">
+        <!-- responsive css -->
+        <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+        <!-- modernizr css -->
+        <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+
+        <link rel='stylesheet' id='font-awesome-css'  href="{% static 'wp-content/themes/rm/css/font-awesome.min.css' %}" type='text/css' media='all' />
+        <link rel='stylesheet' id='ingrid-css-css'  href="{% static 'wp-content/themes/rm/style.css' %}" type='text/css' media='all and (min-width: 990px)' />
+        <link rel='stylesheet' id='tablet-css-css'  href="{% static 'wp-content/themes/rm/style-tablet-responsive.css' %}" type='text/css' media='all and (min-width: 781px) and (max-width: 989px)' />
+        <link rel='stylesheet' id='mobile-css-css'  href="{% static 'wp-content/themes/rm/style-mobile-responsive.css' %}" type='text/css' media='all and (max-width: 780px)' />
+         
+         {% block additionalcss %}
+         {% endblock %}
+    </head>
+    <body>
+         
+        <div id="toTop"><i class="fa fa-angle-up"></i></div>
+        <header id="main">
+            <div id="top_panel"></div>
+            <div id="top_panel_line">&nbsp;</div>
+            <div id="top_panel_stars">&nbsp;</div>
+            <!-- MENU -->                       
+            <nav>
+                <ul id="menu-ust" class="menu">
+                    <li id="menu-item-8" class="menu-item"><a href="{% url 'index' %}"><strong>{% trans 'Anasayfa' %}</strong></a></li>
+                    <li id="menu-item-359" class="menu-item">
+                        <a href="{% url 'about' %}"><strong>{% trans 'Hakkımızda' %}</strong></a>
+                        <ul class="sub-menu">
+                            <li id="menu-item-166" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'Teams_view' %}">{% trans 'Ekibimiz' %}</a></li>
+                        </ul>
+                    </li>
+                    <li id="menu-item-435" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
+                        <a href="{% url 'service_drawing_project' %}"><strong>{% trans 'Hizmetlerimiz' %}</strong></a>
+                        <ul class="sub-menu">
+                            <li id="menu-item-447" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'service_drawing_project' %}">{% trans 'Proje Çizim & Teslim' %}</a></li> 
+                           <!--  <li id="menu-item-525" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'product_delivery' %}">{% trans 'Ürün teslimi' %}</a></li> -->
+                        </ul>
+                    </li>
+                    <li id="menu-item-120" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
+                        <a href="{% url 'collections' %}"><strong>{% trans 'Koleksiyonlar' %}</strong></a>
+                        <ul class="sub-menu">
+                            {% for menu in category_menu %}
+                            <li id="menu-item-517" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
+                                <a href="/{{ html_lang }}{{ menu.url }}">{{ menu.text }}</a>
+                                 
+                            </li> 
+                            {% endfor %}
+                        </ul>
+                    </li>
+                     
+                    <li id="menu-item-328" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
+                        <a href="{% url 'reference' %}"><strong>{% trans 'Referanslarımız' %}</strong></a>
+                        <ul class="sub-menu">
+                            <li id="menu-item-182" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'reference' %}">{% trans 'Yapdığımız projeler' %}</a></li>
+                             
+                        </ul>
+                    </li>
+                    <li id="menu-item-161" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'contact' %}"><strong>{% trans 'İletişim' %}</strong></a></li>
+                </ul>
+                <!-- RESPONSIVE MENU -->
+                <!-- mobile-menu-area-start -->
+            <div class="mobile-menu-area visible-xs visible-sm">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mobile_menu">
+                                <nav id="mobile_menu_active">
+                                    <ul>
+                                        <li><a href="{% url 'index' %}">{% trans 'Anasayfa' %}</a>
+                                        </li>
+                                        <li><a href="{% url 'about' %}">{% trans 'Hakkımızda' %}</a>
+                                            <ul>
+                                                <li><a href="#">{% trans 'Ekibimiz' %}</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="{% url 'service_drawing_project' %}">{% trans 'Hizmetlerimiz' %}</a>
+                                            <ul>
+                                                <li><a href="{% url 'service_drawing_project' %}">{% trans 'Proje Çizim' %}</a></li>
+                                               <!--  <li><a href="{% url 'product_delivery' %}">{% trans 'Ürün teslimi' %}</a></li> -->
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">{% trans 'Koleksiyonlar' %}</a>
+                                            <ul>
+                                                {% for menu in category_menu %}
+                                                <li><a href="/{{ html_lang }}{{ menu.url }}">{{ menu.text }}</a></li> 
+                                                {% endfor %} 
+                                            </ul>
+                                        </li>
+                                        <li><a href="shop.html">{% trans 'Referanslarımız' %}</a>
+                                            <ul>
+                                                <li><a href="#">{% trans 'Yapdığımız projeler' %}</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="{% url 'contact' %}">{% trans 'İletişim' %}</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- mobile-menu-area-end -->
+                <div class="menu_bottom"></div>
+                <!-- LOGO -->
+                <div id="logo"><a href="#anaseyfe">
+                    <img src="{% static 'img/logo-goccina.png' %}" alt="logo" /></a>
+                     
+                </div>
+                
+                <ul>
+                
+                <!-- <div class="dropdown">
+                  {% for lang in LANGUAGES %}
+                    {% if lang.0 == LANGUAGE_CODE %}
+                    <button class="dropbtn">{{ lang.1 }} ({{ lang.0 }})</button>
+                    {% endif %}
+                    {% endfor %}
+                  <div class="dropdown-content">
+                    {% for lang in LANGUAGES %}
+                    {% if lang.0 != LANGUAGE_CODE %}
+                    <a href="/{{ lang.0 }}/{{ url }}" >{{ lang.1 }} ({{ lang.0 }})</a>
+                    {% endif %}
+                    {% endfor %}
+                  </div>
+                </div> -->
+
+            </nav>
+
+        </header>
+        
+        <!-- END REVOLUTION SLIDER -->
+         <!-- <div class="slider-container">
+        <div class="slider">
+             
+             <div id="mainslider" class="nivoSlider slider-image"> 
+                {% for x in slider %}
+                <img src="/media/{{ x.image }}" alt="main slider" title="#htmlcaption1"/>
+                {% endfor %}
+            </div>  -->
+            <!-- Slider Caption 1 -->
+             <!--  <div id="htmlcaption1" class="nivo-html-caption slider-caption-1">
+                <div class="slider-progress"></div> 
+                <div class="slide1-text slide-1">
+                    <div class="middle-text">
+                        <div class="cap-dec wow bounceIn" data-wow-duration="0.7s" data-wow-delay="0s">
+                            <h1>Magazaya!</h1>
+                        </div>  
+                        <div class="cap-title wow bounceIn" data-wow-duration="1s" data-wow-delay="0.2s">
+                            <h3>Virtual Tour</h3>
+                        </div>
+                        <div class="cap-readmore wow bounceIn" data-wow-duration="1.1s" data-wow-delay=".5s">
+                            <a href="#" class="virtual">Virtual Tour</a>
+                        </div>                                      
+                    </div>  
+                </div>                      
+            </div>
+            </div>
+            </div>  -->
+        {% block content %} 
+        <div id="myPano" class="pano">
+            <div class="controlse">
+                <a href="#" class="left">&laquo;</a>
+                <a href="#" class="right">&raquo;</a>
+            </div>
+            <div class="controls png">
+                <a href="#" class="left"></a>
+                <a href="#" class="right"></a>
+            </div>
+        </div>
+        <!-- slider-end -->
+        
+        <!-- latest-blog-start -->
+        <div class="latest-blog">
+            <div class="container">
+                <div class="blog">
+                    <div class="product-title">
+                        <h2>
+                            <span>{% trans 'Perdeler' %}</span>
+                        </h2>
+                    </div>
+                    <div class="row">
+                        <div class="blogs-carousel">
+                            {% for x in news %}
+                            <div class="col-md-12">
+                                <div class="single-blog">
+                                    <div class="blog-img">
+                                        <a href="{% url 'news_single' x.get_slug %}">
+                                            {% if x.background %}
+                                            <img src="/media/{{ x.background }}" alt="{{ x.title }}" />
+                                            {% else %}
+                                            <img src="{% static 'img/latest-blog/3.jpg' %}" alt="none">
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                    <div class="blog-content">
+                                        <h4 class="blog-title">
+                                            <a href="{% url 'news_single' x.get_slug %}">{{ x.title }}</a>
+                                        </h4>
+                                        <p> {{ x.content|slice:":94" }}...
+                                        </p>
+                                        <span class="blog-date">{{ x.created|date:"D d M Y" }}</span>
+                                        <div class="hide">2016-03-09 13:40:04</div>
+                                        <a class="blog-read-more" href="{% url 'news_single' x.get_slug %}">
+                                            <span>{% trans 'Daha fazla' %}</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- latest-blog-end -->
+        <!-- testimonial-area-start -->
+        <div class="testimonial-area">
+            <div class="container">
+                <div class="testimonial">
+                    <div class="testimonial-container">
+                        <div class="testimonial-carousel">
+                            {% for team in teams %}
+                            <div class="item">
+                                <div class="author-content">
+                                    <div class="img">
+                                        <img src="/media/{{ team.image }}" alt="{{ team.name }}" />
+                                    </div>
+                                    <div class="content">
+                                        <p class="content-name">{{ team.name }}</p>
+                                        <p class="content-email">{{ team.email }}</p>
+                                    </div>
+                                </div>
+                                <p class="testimonial-p">" {{ team.text }}"
+                                </p>
+                            </div>
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- testimonial-area-end -->
+        {% endblock %}
+        <!-- footer-start -->
+        <footer>
+            <div class="footer-area">
+                <!-- <div class="footer-top">
+                    <div class="container">
+                        <div class="footer-logo">
+                            <a href="#">
+                                <img src="img/logo-footer.png" alt="" />
+                            </a>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="footer-middle">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-9 foot-mar">
+                                <div class="row">
+                                    <div class="col-md-4  col-sm-4 col-xs-12">
+                                        <h4>{% trans 'Merkez' %}</h4>
+                                        <div class="footer-contact">
+                                            {% for con in contact %} 
+                                            {% if con.address %}
+                                            <p class="address add">
+                                                <span>{{ con.address }}</span>
+                                            </p>
+                                            {% endif %}
+                                            {% if con.number %}
+                                            <p class="phone add">
+                                                <span>{{ con.number }}</span>
+                                            </p>
+                                            {% endif %}
+                                            {% if con.email %}
+                                            <p class="email add">
+                                                <a href="mailto:{{ con.email }}">{{ con.email }}</a>
+                                            </p>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <h4>{% trans 'Filial' %}</h4>
+                                        <ul class="toggle-footer">
+                                            <li>
+                                                <a title="{% trans 'Anasayfa' %}" href="{% url 'index' %}">{% trans 'Anasayfa' %}</a>
+                                            </li>
+                                            <li>
+                                                <a title="{% trans 'Hakkımızda' %}" href="{% url 'about' %}">{% trans 'Hakkımızda' %}</a>
+                                            </li>
+                                            <li>
+                                                <a title="{% trans 'Hizmetlerimiz' %}" href="#">{% trans 'Hizmetlerimiz' %}</a>
+                                            </li>
+                                            <li>
+                                                <a title="{% trans 'Koleksiyonlar' %}" href="#">{% trans 'Koleksiyonlar' %}</a>
+                                            </li>
+                                            <li>
+                                                <a title="{% trans 'Referanslarımız' %}" href="{% url 'reference' %}">{% trans 'Referanslarımız' %}</a>
+                                            </li>
+                                            <li>
+                                                <a title="{% trans 'İletişim' %}" href="#">{% trans 'İletişim' %}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <h4>{% trans 'Ekibimiz' %}</h4>
+                                        <!-- <ul class="toggle-footer">
+                                            <li>
+                                                <a title="My orders" href="#">My orders</a>
+                                            </li>
+                                            <li>
+                                                <a title="My credit slips" href="#"> My credit slips</a>
+                                            </li>
+                                            <li>
+                                                <a title="My addresses" href="#">My addresses</a>
+                                            </li>
+                                            <li>
+                                                <a title="My personal info" href="#">My personal info</a>
+                                            </li>
+                                        </ul> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3">
+                                 
+                                <div class="footer-social">
+                                 <h3>{% trans 'Bizi izle' %}</h3>
+                                    {% for social in contact %}
+                                    {% if social.facebook %}
+                                    <a href="{{ social.facebook }}"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                    {% endif %}
+                                    {% if social.twitter %}
+                                    <a href="{{ social.twitter }}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                    {% endif %}
+                                    {% if social.instagram %}
+                                    <a href="{{ social.instagram }}"><i class="fa fa-rss" aria-hidden="true"></i></a>
+                                    {% endif %}
+                                    <!-- <a href="{{ social.youtube }}"><i class="fa fa-youtube" aria-hidden="true"></i></a> -->
+                                    {% if social.google %}
+                                    <a href="{{ social.google }}"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="payment">
+                            <a href="#">
+                                <img src="img/payment.png" alt="" />
+                            </a>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-12 address">
+                                Copyright  © 
+                                <a href="http://bakuemlak.com/developer">Munis Isazade</a>
+                                .Tüm hakları Saklıdır
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 footer-link">
+                                <ul>
+                                    <!-- <li>
+                                        <a href="#">Customer Service</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Secure payment</a>
+                                    </li> -->
+                                    <!-- <li>
+                                        <a href="#">{% trans 'Kullanım koşulu' %}</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">{% trans 'Hakkimizda' %}</a>
+                                    </li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+         
+        <!-- all js here -->
+        <!-- jquery latest version -->
+        <script src="{% static 'js/vendor/jquery-1.12.0.min.js' %}"></script>
+        <!-- bootstrap js -->
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <!--jquery scrollUp js -->
+        <script src="{% static 'js/jquery.scrollUp.js' %}"></script>
+        <!-- owl.carousel js -->
+        <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+        <!-- meanmenu js -->
+        <script src="{% static 'js/jquery.meanmenu.js' %}"></script>
+        <!-- jquery-ui js -->
+        <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+        <!-- wow js -->
+        <script src="{% static 'js/wow.min.js' %}"></script>
+        <!-- nivo slider js -->
+        <script src="{% static 'js/jquery.nivo.slider.pack.js' %}"></script>
+        <!-- countdown js -->
+        <script src="{% static 'js/countdown.js' %}"></script>
+        <!-- plugins js -->
+        <script src="{% static 'js/plugins.js' %}"></script>
+        <!-- main js -->
+        <script src="{% static 'js/main.js' %}"></script>
+        <!--  360 jquery panorama  -->
+        <script src="{% static 'js/jquery.pano.js' %}"></script>
+        <!--  aditional js here  --> 
+         
+        <div class="hidden munis" style="display:none">{{ data }}</div>
+        <script>
+        $(document).ready(function(){
+            var arr = JSON.parse($('.munis').text());
+            var i=0;
+
+             
+             
+            var image = "/media/slider/new.png";
+            $("#myPano").pano({
+                img: image
+            });
+
+            $('.controlse .left').click(function(e) {
+                e.preventDefault();
+                image = arr[i];
+                $('.pano').css("background-image", "url(" + arr[i] + ")");
+                if (i == arr.length-1) {
+                    i = i - (arr.length-1);
+                }
+                else {
+                    i+=1;
+                }
+                console.log(i,image);
+            });
+            $('.controlse .right').click(function(e) {
+                e.preventDefault();
+                image = arr[i];
+                $('.pano').css("background-image", "url(" + arr[i] + ")");
+                if (i == 0) {
+                    i = i + (arr.length-1);
+                }
+                else {
+                    i-=1;
+                }
+                console.log(i,image);
+            });
+        });
+        </script>
+        <script> 
+            $(document).ready(function(){
+                $('.png .left').mousedown();
+                
+                $('.virtual').click(function(e){
+                    e.preventDefault();
+                    $('.slider-container').hide();
+                    $('.pano').show();
+                })
+            });
+        </script>
+        {% block additionaljavascript %}
+        {% endblock %}
+        <!-- footer-end -->
+    </body>
+</html>
+

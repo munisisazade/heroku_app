@@ -1,0 +1,52 @@
+{% extends 'index.html'%}
+{% load i18n %}
+{% load staticfiles %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% block title %} Goccina {% trans 'Hakkımızda' %} {% endblock %}
+{% block additionalcss %}
+<style>
+	@media screen and (max-width: 480px) {
+    #page {
+    	margin-top: 40px !important;
+    }
+    .dfer {
+		display: none;
+    }
+}
+#menu-item-359 {
+	background-color: #c5b358;
+	padding: 2px;
+}
+#menu-item-359 strong {
+	color: #000 !important;
+	text-shadow: 1px 1px 11px #000;
+}
+</style>
+
+{% endblock %}
+{% block content %}
+<section id="page" class="wrapper" style="margin-top:232px">
+
+	<section id="full-width-content" style="">
+		<article id="post-165"><p>&nbsp;</p>
+		<h3>{% trans 'Bizim hakkımızda' %}</h3>
+		<p>1997 yılında, Ankara’da kurulan Antaş, Türkiye’nin dört bir yanına tekstil alanında toptan satış yapmaya başlamıştır.Kaliteli ürünleri ile kısa sürede büyük başarı yakalayan Antaş, 2002 yılında Goccina® markasını üretmişdir.
+		Bunu müteakip, Ankara başta olmak üzere, birçok ilde, Goccina Mağazaları için franchise vermiştir.</p>
+		<p>Kısa zamanda birçok elçiliğin, otelin, villanın, örnek dairenin, ofisin, mağazanın, okulun, hastanenin ve kafenin perde & kumaş & döşemelik tasarımını ve uygulamasını yapmıştır.</p>
+		<p>&nbsp;</p>
+		<p>Müşterilerinin ihtiyaçları doğrultusunda, proje uygulamada aktif olarak rol alan Antaş, hizmet verdiği tüm sektörlerde büyük başarı elde etmiştir.</p>
+		<p>&nbsp;</p>
+		<p>Goccina, 2016 yılında, yenilenen yüzüyle, showroomunu Bakude Nerimanov rayonu Genclik prospekti ve Elmler Hüseyn Cavid prospektinde hizmete perde & kumaş & döşemelik faaliyetlerinin yanı sıra halihazırda taahhüt ve proje uygulamasına da devam etmektedir.</p>
+		<p>&nbsp;</p>
+		<p>Goccina , geçmişten günümüze, %100 müşteri memnuniyeti garantisiyle hizmet vermekte; müşterileriyle saygılı, mesafeli ve dürüst şekilde iletişim kurmayı kendisine ilke edinmektedir.</p>
+		<p>&nbsp;</p> 
+		<p><span style="color: #000000;">&nbsp;</span></p>
+		<p>&nbsp;</p>
+
+		</article>
+	</section>
+	
+</section>
+
+{% endblock %}

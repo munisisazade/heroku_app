@@ -1,0 +1,43 @@
+{% load i18n %}
+{% load staticfiles %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+<!DOCTYPE html>
+<html lang="{{ html_lang }}">
+<head>
+	<title>{% trans 'Websiteye hoşgeldiniz' %}</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<style>
+		img {
+			width: 100%;
+			height: auto;
+		}
+	</style>
+</head>
+<body>
+<a href="{% url 'about' %}">{% trans 'Hakkımızda' %}</a>
+<a href="{% url 'index' %}">{% trans 'Ana sayfa' %}</a>
+<a href="{% url 'news' %}">{% trans 'Haberler' %}</a>
+ {% for n in menu %}
+ <a href="{{ n.url }}">{{ n.title }}</a>
+ {% endfor %}
+{% if mobile %}
+<span style="color:blue;font-size:18px;margin:10px;">Beli telefondan girmisen</span>
+{% endif %}
+<h1>{% trans 'Siteye hoş geldiniz' %}</h1>
+<ul>
+{% for lang in LANGUAGES %}
+{% if lang.0 != LANGUAGE_CODE %}
+<li>
+          <a href="/{{ lang.0 }}/{{ url }}" >{{ lang.1 }} ({{ lang.0 }})</a>
+</li>
+{% endif %}
+{% endfor %} 
+
+</ul>
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

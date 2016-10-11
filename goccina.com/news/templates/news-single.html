@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %} Goccina {{ data.title }} {% endblock %}
+{% block additionalcss %}
+<style>
+	@media screen and (max-width: 480px) {
+    #page {
+    	margin-top: 40px !important;
+    }
+    .dfer {
+		display: none;
+    }
+}
+
+</style>
+
+{% endblock %}
+{% block content %}
+
+<section id="page" class="wrapper" style="margin-top:232px">
+<section id="full-width-content" style="min-height: 113px;">
+		<article id="post-101"><img src="/media/{{ data.background }}" alt="">
+<hr>
+<h3>{{ data.title }}</h3>
+
+<p>{{ data.content }}</p>
+
+
+		</article>
+	</section>
+	</section>
+{% endblock %}

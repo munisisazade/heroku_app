@@ -1,0 +1,97 @@
+{% extends 'index.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %} Goccina {% trans 'İletişim' %} {% endblock %}
+{% block additionalcss %}
+<style>
+	@media screen and (max-width: 480px) {
+    #page {
+    	margin-top: 40px !important;
+    }
+    .dfer {
+		display: none;
+    }
+}
+#menu-item-161 {
+	background-color: #c5b358;
+	padding: 2px;
+}
+#menu-item-161 strong {
+	color: #000 !important;
+	text-shadow: 1px 1px 11px #000;
+}
+</style>
+
+{% endblock %}
+{% block content %}  
+<!-- contact-us-start -->
+		<div class="contact-us-area">
+			<div class="container">
+				<div class="breadcrumb-area">
+					<div class="container">
+						<div class="breadcrumb">
+							<a href="index.html" title="Return to Home">
+								<i class="icon-home"></i>
+							</a>
+							<span class="navigation-pipe">></span>
+							<span class="navigation-page">
+								{% trans 'İletişim' %}
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="entry-header">
+							<h1 class="entry-title">{% trans 'Bize ulaşın' %}</h1>
+						</div>
+						<form action="https://devitems.com/html/vonia-preview/vonia/mail.php" method="POST" class="contact-form-box">
+							<fieldset>
+								<div class="row">
+									<div class="col-xs-12 col-md-3">
+										<div class="footer-contact">
+                                            {% for con in contact %} 
+                                            {% if con.address %}
+                                            <p class="address add">
+                                                <span style="color:#000;font-size:18px;"><strong style="color:#000 !important;text-shadow: none !important; font-size:18px !important">{% trans 'Adress' %}:</strong> {{ con.address }}</span>
+                                            </p>
+                                            <br>
+                                            <br>
+                                            {% endif %}
+                                            {% if con.number %}
+                                            <p class="phone add">
+                                                <span style="color:#000;font-size:18px;"><strong style="color:#000 !important;text-shadow: none !important; font-size:18px !important">{% trans 'Numara' %}:</strong> {{ con.number }}</span>
+                                            </p>
+                                            <br>
+                                            <br>
+                                            
+                                            {% endif %}
+                                            {% if con.email %}
+                                            <p class="email add">
+                                                <span style="color:#000;font-size:18px;"><strong style="color:#000 !important;text-shadow: none !important; font-size:18px !important">{% trans 'Email' %}:</strong> {{ con.email }}</span>
+                                            </p>
+                                            <br>
+                                            <br>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </div>
+									</div>
+									<div class="col-xs-12 col-md-9">
+											<div class="form-group">
+												<label for="message">{% trans 'Harita' %}</label>
+												<div class="shop-select">
+												<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4025.5232017497765!2d49.86319810434181!3d40.39255639103066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d1542e69ca3%3A0xdfdd9a087305e774!2sQafqaz+Park+Hotel!5e0!3m2!1saz!2s!4v1475775876753" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+												</div>											
+											</div>										
+									</div>
+								</div>
+								<div class="submit"> 
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- contact-us-end -->
+{% endblock %}

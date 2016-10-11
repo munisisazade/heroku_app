@@ -1,0 +1,32 @@
+{% extends 'index.html'%}
+{% load i18n %}
+{% load staticfiles %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% block content %}
+
+<h3>{% trans 'Haberler' %}</h3>
+{% for new in news %}
+{% for x in image_list %}
+<img src="/media/{{ x.image }}" alt="{{ new.title }}">
+{% endfor %}
+<p style="color:red">{{ new.title }}</p>
+<p style="color:green">{{ new.content }}</p>
+
+{% endfor %}
+<div class="pagination">
+    <span class="step-links">
+        {% if news.has_previous %}
+            <a href="?page={{ contacts.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ news.number }} of {{ news.paginator.num_pages }}.
+        </span>
+
+        {% if news.has_next %}
+            <a href="?page={{ news.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

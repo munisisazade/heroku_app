@@ -1,0 +1,35 @@
+{% extends 'index.html'%}
+{% load i18n %}
+{% load staticfiles %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% block title %} Goccina {% trans 'Hakkımızda' %} {% endblock %}
+{% block additionalcss %}
+<style>
+	@media screen and (max-width: 480px) {
+    #page {
+    	margin-top: 40px !important;
+    }
+    .dfer {
+		display: none;
+    }
+}
+#menu-item-359 {
+	background-color: #c5b358;
+	padding: 2px;
+}
+#menu-item-359 strong {
+	color: #000 !important;
+	text-shadow: 1px 1px 11px #000;
+}
+</style>
+
+{% endblock %}
+{% block content %}
+<section id="page" class="wrapper" style="margin-top:232px">
+
+	 <br><br><br><br><br><br><br><br><br><br><br><br>
+	
+</section>
+
+{% endblock %}

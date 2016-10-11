@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %} Goccina {% trans 'Proje Çizim' %} {% endblock %}
+{% block additionalcss %}
+<style>
+	@media screen and (max-width: 480px) {
+    #page {
+    	margin-top: 40px !important;
+    }
+    .dfer {
+		display: none;
+    }
+}
+#menu-item-120 {
+	background-color: #c5b358;
+	padding: 2px;
+}
+#menu-item-120 strong {
+	color: #000 !important;
+	text-shadow: 1px 1px 11px #000;
+}
+</style>
+
+{% endblock %}
+{% block content %}
+<section id="page" class="wrapper" style="margin-top:232px">
+<section style=" " id="full-width-content">
+		<article id="post-446"><hr>
+<p><h3><em>Bizim aşağıdakı kolleksiyonlarımız var.</p>
+<hr>
+
+<ul>
+{% for x in kategory %}
+<li><a href="/{{ html_lang }}{{ x.url }}">{{ x.text }}</a></li>
+{% endfor %}
+</ul>
+ 
+
+		</article>
+	</section>
+	</section>
+{% endblock %}

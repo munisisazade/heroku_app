@@ -1,0 +1,84 @@
+{% extends 'index.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %} Goccina {% trans 'Proje Çizim' %} {% endblock %}
+{% block additionalcss %}
+<style>
+	@media screen and (max-width: 480px) {
+    #page {
+    	margin-top: 40px !important;
+    }
+    .dfer {
+		display: none;
+    }
+}
+#menu-item-120 {
+	background-color: #c5b358;
+	padding: 2px;
+}
+#menu-item-120 strong {
+	color: #000 !important;
+	text-shadow: 1px 1px 11px #000;
+}
+ 
+table img {
+	width: 400px !important;
+}
+</style>
+ <link rel="stylesheet" href="{% static 'css/colorbox.css' %}">
+
+{% endblock %}
+{% block content %}
+<section id="page" class="wrapper" style="margin-top:232px">
+<section style=" " id="full-width-content">
+		 <article id="post-288"><p style="text-align: center;"></p><header class="heading2">
+				<div class="left">&nbsp;</div>
+					<div class="center"><h1>{{ name }}</h1> 
+					</div>	
+				<div class="right">&nbsp;</div>
+			</header>
+			<p></p>
+
+		<div id="gallery-1" class="gallery galleryid-288 gallery-columns-2 gallery-size-thumbnail"><dl class="gallery-item">
+					<table style="width:194%">
+						<tr>
+							{% for x in data %}
+							<td><a href="/media/{{ x.image }}" class="group2" ><img src="/media/{{ x.image }}" alt="{{ x.text }}"></a>
+							<p>{{ x.text }}</p>
+							</td>
+							{% if forloop.counter|divisibleby:3 %}
+							</tr>
+							<tr>
+							{% endif %}
+							{% endfor %}
+						</tr>
+						
+					</table>
+				</div> 
+		</article>
+	</section>
+	</section>
+{% endblock %}
+{% block additionaljavascript %}
+<script src="{% static 'js/jquery.colorbox.js' %}" ></script>
+<script>
+	var cboxOptions = {
+  width: '95%',
+  height: '95%',
+  maxWidth: '960px',
+  maxHeight: '960px',
+  rel:'group2', 
+  transition:'fade',
+}
+
+$(".group2").colorbox(cboxOptions);
+
+$(window).resize(function(){
+    $.colorbox.resize({
+      width: window.innerWidth > parseInt(cboxOptions.maxWidth) ? cboxOptions.maxWidth : cboxOptions.width,
+      height: window.innerHeight > parseInt(cboxOptions.maxHeight) ? cboxOptions.maxHeight : cboxOptions.height
+    });
+});
+	//$(".group2").colorbox({rel:'group2', transition:"fade"});
+</script>
+{% endblock %}
